@@ -1,0 +1,43 @@
+#!/usr/bin/env mkb
+options
+{
+	
+}
+
+subprojects
+{
+    iw2d
+}
+
+includepath
+{
+	./source
+}
+
+files
+{
+	[Source]
+	(source)
+	Main.cpp
+	Config.h
+
+	[Source/game]
+	(source)
+	World.cpp
+	World.h
+	BallBot.cpp
+	BallBot.h
+	Star.cpp
+	Star.h
+}
+
+assets
+{
+	(data)
+	grass.png
+	stone.png
+	dirt.png
+	character.png
+	star.png
+}
+
