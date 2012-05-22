@@ -1,5 +1,5 @@
-#ifndef _BALLBOT_H_
-#define _BALLBOT_H_
+#ifndef _Player_H_
+#define _Player_H_
 
 #include "Iw2D.h"
 
@@ -7,11 +7,11 @@
 
 #define ANGULAR_VELOCITY 0.01
 
-class BallBot
+class Player
 {
 public:
-	BallBot();
-	~BallBot();
+	Player();
+	~Player();
 
 	void release();
 

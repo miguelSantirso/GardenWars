@@ -4,7 +4,7 @@
 #include "IwGx.h"
 
 #include "World.h"
-#include "BallBot.h"
+#include "Player.h"
 #include "Star.h"
 
 #define MAX_STARS 15
@@ -30,7 +30,7 @@ int main()
     int surface_height = Iw2DGetSurfaceHeight();
 
 	World theWorld;
-	BallBot theBot;
+	Player theBot;
 	
 	float cameraX = 0;
 	float cameraY = 0;

@@ -1,11 +1,11 @@
-#include "BallBot.h"
+#include "Player.h"
 #include "s3eAccelerometer.h"
 
-BallBot::BallBot(): worldX(0), worldY(0)
+Player::Player(): worldX(0), worldY(0)
 {
 	graphic = Iw2DCreateImage("character.png");
 
-	speed = 0.006;
+	speed = 0.03;
 	velocity.x = 0;
 	velocity.y = 0;
 
@@ -13,13 +13,13 @@ BallBot::BallBot(): worldX(0), worldY(0)
 }
 
 
-BallBot::~BallBot()
+Player::~Player()
 {
 	release();
 }
 
 
-void BallBot::release()
+void Player::release()
 {
 	delete graphic;
 
@@ -27,7 +27,7 @@ void BallBot::release()
 }
 
 
-void BallBot::update()
+void Player::update()
 {
 	velocity.x = s3eAccelerometerGetX();
 	velocity.y = (-600 - s3eAccelerometerGetY());
@@ -49,7 +49,7 @@ void BallBot::update()
 }
 
 
-void BallBot::draw()
+void Player::draw()
 {
 	CIwMat2D transform;
 	transform.SetRot(IwGeomAtan2(velocity.y, velocity.x));
