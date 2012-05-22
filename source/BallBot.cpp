@@ -5,7 +5,7 @@ BallBot::BallBot(): worldX(0), worldY(0)
 {
 	graphic = Iw2DCreateImage("character.png");
 
-	speed = 0.003;
+	speed = 0.006;
 	velocity.x = 0;
 	velocity.y = 0;
 
