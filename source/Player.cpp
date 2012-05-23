@@ -15,11 +15,16 @@ void Player::update()
 {
 	velocity.x = s3eAccelerometerGetX();
 	velocity.y = (-600 - s3eAccelerometerGetY());
+
+	float throttle = ABS(velocity.GetLength() / 100.0);
+	if (throttle > 1)
+		throttle = 1;
+
 	if (velocity.GetLength() > 0)
 		velocity.Normalise();
 
-	position.x += speed * velocity.x;
-	position.y += speed * velocity.y;
+	position.x += throttle * speed * velocity.x;
+	position.y += throttle * speed * velocity.y;
 
 	angle = IwGeomAtan2(velocity.y, velocity.x);
 

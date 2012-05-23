@@ -70,11 +70,6 @@ int main()
 
 		effects.update(s3eTimerGetMs() - lastFrameMs);
 
-		sprintf(starsCollectedText, "FPS: %d", 1000.0/(s3eTimerGetMs() - lastFrameMs));
-		IwGxPrintString(10, 10, starsCollectedText);
-		sprintf(starsCollectedText, "Stars: %d", starsCollected);
-		IwGxPrintString(10, 20, starsCollectedText);
-
 		// draw
 		theWorld.draw((int)theBot.position.x, (int)theBot.position.y);
 		drawStars(theBot.position);
@@ -82,14 +77,18 @@ int main()
 
 		effects.render(theBot.position);
 
-        // Show the surface
-        Iw2DSurfaceShow();
-
+		sprintf(starsCollectedText, "FPS: %f", 1000.0/(s3eTimerGetMs() - lastFrameMs));
+		IwGxPrintString(10, 10, starsCollectedText);
+		sprintf(starsCollectedText, "Stars: %d", starsCollected);
+		IwGxPrintString(10, 20, starsCollectedText);
 		
 		lastFrameMs = s3eTimerGetMs();
 
+        // Show the surface
+        Iw2DSurfaceShow();
+
         // Yield to the opearting system
-        s3eDeviceYield(10);
+        s3eDeviceYield(0);
     }
 
 	theWorld.release();
