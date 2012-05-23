@@ -17,7 +17,6 @@ Star* stars[MAX_STARS];
 
 int starsCollected = 0;
 
-//EffectManager effects;
 SimpleResourceManager* resources;
 
 void spawnStars();
