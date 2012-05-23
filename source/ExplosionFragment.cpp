@@ -15,6 +15,7 @@ bool ExplosionFragment::update(int elapsed)
     // Move under gravity
 	position.y -= 0.006;
 	size += 0.12;
+	angle += 600;
 
     // The effect disappears after about 1 second
     return timer<35;

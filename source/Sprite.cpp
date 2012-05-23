@@ -26,9 +26,10 @@ void Sprite::draw(CIwVec2 camPos)
 		return; // The sprite is not visible in the screen
 	}
 
+	transform.Scale(size);
 	transform.SetRot(angle);
 	transform.SetTrans(screenPos);
 	Iw2DSetTransformMatrix(transform);
 
-	Iw2DDrawImage(graphic, offset, CIwSVec2(graphic->GetWidth() * size, graphic->GetHeight() * size));
+	Iw2DDrawImage(graphic, offset);
 }
