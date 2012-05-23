@@ -1,6 +1,6 @@
 #include "World.h"
 
-World::World()
+World::World(SimpleResourceManager* resources)
 {
 	for (int i = 0; i < WORLD_TILES_WIDTH; i++)
 	{
@@ -17,9 +17,9 @@ World::World()
 		}
 			
 	}
-	tileImages[World::Grass] = Iw2DCreateImage("grass.png");
-	tileImages[World::Stone] = Iw2DCreateImage("stone.png");
-	tileImages[World::Dirt] = Iw2DCreateImage("dirt.png");
+	tileImages[World::Grass] = resources->getImage(RESOURCE_GRASS);
+	tileImages[World::Stone] = resources->getImage(RESOURCE_STONE);
+	tileImages[World::Dirt] = resources->getImage(RESOURCE_DIRT);
 }
 
 World::~World()

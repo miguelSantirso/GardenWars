@@ -18,8 +18,7 @@ public:
 	void update();
 	void draw();
 
-	float worldX;
-	float worldY;
+	CIwVec2 position;
 
 	CIwSVec2 velocity;
 	float speed;

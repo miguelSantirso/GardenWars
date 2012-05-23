@@ -12,9 +12,11 @@
 int nStars = 0;
 Star* stars[MAX_STARS];
 
+int starsCollected = 0;
+
 void spawnStars();
 void drawStars(int camX, int camY);
-
+void checkCollisionsWithStars(CIwVec2);
 
 int main()
 {
@@ -29,8 +31,12 @@ int main()
     int surface_width = Iw2DGetSurfaceWidth();
     int surface_height = Iw2DGetSurfaceHeight();
 
-	World theWorld;
+	SimpleResourceManager resources;
+
+	World theWorld(&resources);
 	Player theBot;
+
+	char starsCollectedText[40];
 	
 	float cameraX = 0;
 	float cameraY = 0;
@@ -50,12 +56,15 @@ int main()
         IwGxClear(IW_GX_COLOUR_BUFFER_F | IW_GX_DEPTH_BUFFER_F);
 
 		theBot.update();
-
 		spawnStars();
+		checkCollisionsWithStars(theBot.position);
+
+		sprintf(starsCollectedText, "Stars: %d", starsCollected);
+		IwGxPrintString(10, 10, starsCollectedText);
 
 		// draw
-		theWorld.draw((int)theBot.worldX, (int)theBot.worldY);
-		drawStars((int)theBot.worldX, (int)theBot.worldY);
+		theWorld.draw((int)theBot.position.x, (int)theBot.position.y);
+		drawStars((int)theBot.position.x, (int)theBot.position.y);
 		theBot.draw();
 
         // Show the surface
@@ -93,6 +102,21 @@ void spawnStars()
 
 	if (IwRand() % 100 == 0)
 		stars[nStars++] = new Star(IwRandMinMax(0, 2000), IwRandMinMax(0, 2000));
+}
+
+
+void checkCollisionsWithStars(CIwVec2 playerPos)
+{
+	for (int i = 0; i < MAX_STARS; i++)
+	{
+		if (stars[i] != NULL && (playerPos - stars[i]->position).GetLength() < 80)
+		{
+			delete stars[i];
+			stars[i] = NULL;
+
+			starsCollected++;
+		}
+	}
 }
 
 

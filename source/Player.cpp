@@ -1,9 +1,11 @@
 #include "Player.h"
 #include "s3eAccelerometer.h"
 
-Player::Player(): worldX(0), worldY(0)
+Player::Player()
 {
 	graphic = Iw2DCreateImage("character.png");
+
+	position = CIwVec2(50, 50);
 
 	speed = 0.006;
 	velocity.x = 0;
@@ -34,18 +36,18 @@ void Player::update()
 	if (velocity.GetLength() > 0)
 		velocity.Normalise();
 
-	worldX += speed * velocity.x;
-	worldY += speed * velocity.y;
+	position.x += speed * velocity.x;
+	position.y += speed * velocity.y;
 
 	// Clamp world coordinates
-	if (worldX < 0)
-		worldX = 0;
-	if (worldX > WORLD_PIXELS_WIDTH)
-		worldX = WORLD_PIXELS_WIDTH;
-	if (worldY < 0)
-		worldY = 0;
-	if (worldY > WORLD_PIXELS_HEIGHT)
-		worldY = WORLD_PIXELS_HEIGHT;
+	if (position.x < 0)
+		position.x = 0;
+	if (position.x > WORLD_PIXELS_WIDTH)
+		position.x = WORLD_PIXELS_WIDTH;
+	if (position.y < 0)
+		position.y = 0;
+	if (position.y > WORLD_PIXELS_HEIGHT)
+		position.y = WORLD_PIXELS_HEIGHT;
 }
 
 

@@ -2,6 +2,8 @@
 #define _WORLD_H_
 
 #include "Iw2D.h"
+
+#include "SimpleResourceManager.h"
 #include "Config.h"
 
 #define NUM_H_TILES ((SCREEN_WIDTH / TILE_WIDTH) + 2)
@@ -12,7 +14,7 @@ class World
 public:
 	enum TileType { Grass = 0, Stone, Dirt };
 
-	World();
+	World(SimpleResourceManager* resources);
 	~World();
 
 	void draw(int cameraX, int cameraY);

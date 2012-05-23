@@ -14,8 +14,7 @@ public:
 
 	void draw(int camX, int camY);
 
-	float worldX;
-	float worldY;
+	CIwVec2 position;
 private:
 	CIw2DImage* graphic;
 

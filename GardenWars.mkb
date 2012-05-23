@@ -21,6 +21,21 @@ files
 	Main.cpp
 	Config.h
 
+	[Source/effects]
+	(source)
+	Effect.h
+	EffectManager.cpp
+	EffectManager.h
+	ExplosionFragment.cpp
+	ExplosionFragment.h
+
+	[Source/utils]
+	(source)
+	SimpleResourceManager.cpp
+	SimpleResourceManager.h
+	Sprite.cpp
+	Sprite.h
+
 	[Source/game]
 	(source)
 	World.cpp

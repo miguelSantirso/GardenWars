@@ -4,8 +4,8 @@ Star::Star(int x, int y)
 {
 	graphic = Iw2DCreateImage("star.png");
 
-	worldX = x;
-	worldY = y;
+	position.x = x;
+	position.y = y;
 }
 
 Star::~Star()
@@ -21,8 +21,8 @@ void Star::release()
 
 void Star::draw(int camX, int camY)
 {
-	screenX = worldX - camX + 0.5*SCREEN_WIDTH;
-	screenY = worldY - camY + 0.5 * SCREEN_HEIGHT;
+	screenX = position.x - camX + 0.5*SCREEN_WIDTH;
+	screenY = position.y - camY + 0.5 * SCREEN_HEIGHT;
 
 	if (screenX < -graphic->GetWidth() || screenX > SCREEN_WIDTH || screenY < -graphic->GetHeight() || screenY > SCREEN_HEIGHT)
 		return;
