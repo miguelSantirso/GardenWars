@@ -2,24 +2,15 @@
 #define _STAR_H_
 
 #include "Iw2D.h"
-#include "Config.h"
 
-class Star
+#include "Config.h"
+#include "SimpleResourceManager.h"
+#include "Sprite.h"
+
+class Star : public Sprite
 {
 public:
-	Star(int x, int y);
-	~Star();
-
-	void release();
-
-	void draw(int camX, int camY);
-
-	CIwVec2 position;
-private:
-	CIw2DImage* graphic;
-
-	int screenX;
-	int screenY;
+	Star(CIw2DImage* graphic):Sprite(graphic) {}
 };
 
 #endif

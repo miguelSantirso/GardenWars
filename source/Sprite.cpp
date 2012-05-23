@@ -9,10 +9,7 @@ Sprite::Sprite(CIw2DImage* image) : graphic(image), angle(0), position(CIwVec2(0
 void Sprite::release()
 {
 	if (graphic != NULL)
-	{
-		delete graphic;
 		graphic = NULL;
-	}
 }
 
 

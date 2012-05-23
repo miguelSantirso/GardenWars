@@ -7,15 +7,15 @@
 #include "Player.h"
 #include "Star.h"
 
-#define MAX_STARS 15
+#define MAX_STARS 60
 
 int nStars = 0;
 Star* stars[MAX_STARS];
 
 int starsCollected = 0;
 
-void spawnStars();
-void drawStars(int camX, int camY);
+void spawnStars(SimpleResourceManager*);
+void drawStars(CIwVec2 camPos);
 void checkCollisionsWithStars(CIwVec2);
 
 int main()
@@ -56,7 +56,7 @@ int main()
         IwGxClear(IW_GX_COLOUR_BUFFER_F | IW_GX_DEPTH_BUFFER_F);
 
 		theBot.update();
-		spawnStars();
+		spawnStars(&resources);
 		checkCollisionsWithStars(theBot.position);
 
 		sprintf(starsCollectedText, "Stars: %d", starsCollected);
@@ -64,7 +64,7 @@ int main()
 
 		// draw
 		theWorld.draw((int)theBot.position.x, (int)theBot.position.y);
-		drawStars((int)theBot.position.x, (int)theBot.position.y);
+		drawStars(theBot.position);
 		theBot.draw(theBot.position);
 
         // Show the surface
@@ -87,6 +87,8 @@ int main()
 	}
 	delete [] stars;
 
+	resources.release();
+
     // Shut down Marmalade graphics system and the Iw2D module
     Iw2DTerminate();
     IwGxTerminate();
@@ -95,13 +97,20 @@ int main()
 }
 
 
-void spawnStars()
+void spawnStars(SimpleResourceManager* resources)
 {
 	if (nStars >= MAX_STARS)
 		return;
 
-	if (IwRand() % 100 == 0)
-		stars[nStars++] = new Star(IwRandMinMax(0, 2000), IwRandMinMax(0, 2000));
+	if (true || IwRand() % 100 == 0)
+	{
+		stars[nStars] = new Star(resources->getImage(RESOURCE_STAR));
+		stars[nStars]->position.x = IwRandMinMax(0, WORLD_PIXELS_WIDTH);
+		stars[nStars]->position.y = IwRandMinMax(0, WORLD_PIXELS_HEIGHT);
+
+		nStars++;
+	}
+
 }
 
 
@@ -120,11 +129,11 @@ void checkCollisionsWithStars(CIwVec2 playerPos)
 }
 
 
-void drawStars(int camX, int camY)
+void drawStars(CIwVec2 camPos)
 {
 	for (int i = 0; i < MAX_STARS; i++)
 	{
 		if (stars[i] != NULL)
-			stars[i]->draw(camX, camY);
+			stars[i]->draw(camPos);
 	}
 }
