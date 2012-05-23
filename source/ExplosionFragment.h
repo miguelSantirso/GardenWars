@@ -10,6 +10,7 @@
 // A star-shaped particle, used when tiles explode
 struct ExplosionFragment : public Effect, public Sprite
 {
+	float speed;
     int timer;
     int colour;
 
