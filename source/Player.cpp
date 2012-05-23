@@ -29,7 +29,12 @@ void Player::update(World* theWorld)
 	int nextPosY = position.y + throttle * speed * velocity.y;
 
 	if (!theWorld->isPositionNavigable(nextPosX, nextPosY))
-		return;
+	{
+		if (theWorld->isPositionNavigable(position.x, nextPosY))
+			nextPosX = position.x;
+		else if (theWorld->isPositionNavigable(nextPosX, position.y))
+			nextPosY = position.y;
+	}
 
 	position.x = nextPosX;
 	position.y = nextPosY;
