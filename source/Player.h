@@ -3,27 +3,20 @@
 
 #include "Iw2D.h"
 
+#include "Sprite.h"
 #include "Config.h"
 
 #define ANGULAR_VELOCITY 0.01
 
-class Player
+class Player : public Sprite
 {
 public:
-	Player();
-	~Player();
-
-	void release();
+	Player(CIw2DImage* image);
 
 	void update();
-	void draw();
-
-	CIwVec2 position;
 
 	CIwSVec2 velocity;
 	float speed;
-private:
-	CIw2DImage* graphic;
 };
 
 #endif

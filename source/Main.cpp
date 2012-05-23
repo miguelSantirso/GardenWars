@@ -34,7 +34,7 @@ int main()
 	SimpleResourceManager resources;
 
 	World theWorld(&resources);
-	Player theBot;
+	Player theBot(resources.getImage(RESOURCE_CHARACTER));
 
 	char starsCollectedText[40];
 	
@@ -65,7 +65,7 @@ int main()
 		// draw
 		theWorld.draw((int)theBot.position.x, (int)theBot.position.y);
 		drawStars((int)theBot.position.x, (int)theBot.position.y);
-		theBot.draw();
+		theBot.draw(theBot.position);
 
         // Show the surface
         Iw2DSurfaceShow();

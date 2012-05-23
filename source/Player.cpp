@@ -1,31 +1,13 @@
 #include "Player.h"
 #include "s3eAccelerometer.h"
 
-Player::Player()
+Player::Player(CIw2DImage* image) : Sprite(image)
 {
-	graphic = Iw2DCreateImage("character.png");
-
-	position = CIwVec2(50, 50);
-
 	speed = 0.006;
 	velocity.x = 0;
 	velocity.y = 0;
 
 	s3eAccelerometerStart();
-}
-
-
-Player::~Player()
-{
-	release();
-}
-
-
-void Player::release()
-{
-	delete graphic;
-
-	s3eAccelerometerStop();
 }
 
 
@@ -39,6 +21,8 @@ void Player::update()
 	position.x += speed * velocity.x;
 	position.y += speed * velocity.y;
 
+	angle = IwGeomAtan2(velocity.y, velocity.x);
+
 	// Clamp world coordinates
 	if (position.x < 0)
 		position.x = 0;
@@ -50,16 +34,3 @@ void Player::update()
 		position.y = WORLD_PIXELS_HEIGHT;
 }
 
-
-void Player::draw()
-{
-	CIwMat2D transform;
-	transform.SetRot(IwGeomAtan2(velocity.y, velocity.x));
-	transform.SetTrans(CIwSVec2(0.5*SCREEN_WIDTH, 0.5*SCREEN_HEIGHT));
-	// Set this transform as the active transform for Iw2D
-    Iw2DSetTransformMatrix(transform);
-
-	int offsetX = -(graphic->GetWidth() * 0.5);
-	int offsetY = -(graphic->GetHeight() * 0.5);
-	Iw2DDrawImage(graphic, CIwSVec2(offsetX, offsetY));
-}
