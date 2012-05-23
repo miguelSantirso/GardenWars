@@ -23,8 +23,6 @@ void SimpleResourceManager::release()
 			delete images[i];
 			images[i] = NULL;
 		}
-
-	delete [] images;
 }
 
 

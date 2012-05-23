@@ -29,11 +29,14 @@ World::~World()
 
 void World::release()
 {
-	delete tileImages[World::Grass];
-
 	for (int i = 0; i < WORLD_TILES_WIDTH; i++)
-		delete grid[i];
-	delete [] grid;
+	{
+		if (grid[i] != NULL)
+		{
+			delete grid[i];
+			grid[i] = NULL;
+		}
+	}
 }
 
 

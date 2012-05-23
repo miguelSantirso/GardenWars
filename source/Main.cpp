@@ -17,7 +17,7 @@ Star* stars[MAX_STARS];
 
 int starsCollected = 0;
 
-EffectManager effects;
+//EffectManager effects;
 SimpleResourceManager* resources;
 
 void spawnStars();
@@ -30,6 +30,7 @@ int main()
     IwGxInit();
     Iw2DInit();
 
+	g_EffectsManager = new EffectManager();
 	resources = new SimpleResourceManager();
 
     // Set the default background clear colour
@@ -68,14 +69,14 @@ int main()
 		spawnStars();
 		checkCollisionsWithStars(theBot.position);
 
-		effects.update(s3eTimerGetMs() - lastFrameMs);
+		g_EffectsManager->update(s3eTimerGetMs() - lastFrameMs);
 
 		// draw
 		theWorld.draw((int)theBot.position.x, (int)theBot.position.y);
 		drawStars(theBot.position);
 		theBot.draw(theBot.position);
 
-		effects.render(theBot.position);
+		g_EffectsManager->render(theBot.position);
 
 		sprintf(starsCollectedText, "FPS: %f", 1000.0/(s3eTimerGetMs() - lastFrameMs));
 		IwGxPrintString(10, 10, starsCollectedText);
@@ -98,13 +99,13 @@ int main()
 	{
 		if (stars[i] != NULL)
 		{
-			stars[i]->release();
 			delete stars[i];
 		}
 	}
-	delete [] stars;
 
-	resources->release();
+	delete resources;
+
+	delete (g_EffectsManager);
 
     // Shut down Marmalade graphics system and the Iw2D module
     Iw2DTerminate();
@@ -138,7 +139,7 @@ void checkCollisionsWithStars(CIwVec2 playerPos)
 		if (stars[i] != NULL && (playerPos - stars[i]->position).GetLength() < 80)
 		{
 			ExplosionFragment* exp = new ExplosionFragment(resources->getImage(RESOURCE_STAR), stars[i]->position, CIwVec2(0, -0.0001), 0xff223355);
-			effects.add(exp);
+			g_EffectsManager->add(exp);
 
 			delete stars[i];
 			stars[i] = NULL;
