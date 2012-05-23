@@ -16,9 +16,12 @@ public:
 
 	World(SimpleResourceManager* resources);
 	~World();
+	void release();
 
 	void draw(int cameraX, int cameraY);
-	void release();
+	
+	bool isPositionNavigable(int worldX, int worldY);
+
 private:
 	TileType* grid[WORLD_TILES_WIDTH];
 	CIw2DImage* tileImages[5];
@@ -27,6 +30,7 @@ private:
 	int camY;
 
 	void drawTile(int i, int j);
+
 };
 
 #endif

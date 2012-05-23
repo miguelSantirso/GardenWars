@@ -11,7 +11,7 @@ Player::Player(CIw2DImage* image) : Sprite(image)
 }
 
 
-void Player::update()
+void Player::update(World* theWorld)
 {
 	velocity.x = s3eAccelerometerGetX();
 	velocity.y = (-600 - s3eAccelerometerGetY());
@@ -23,19 +23,15 @@ void Player::update()
 	if (velocity.GetLength() > 0)
 		velocity.Normalise();
 
-	position.x += throttle * speed * velocity.x;
-	position.y += throttle * speed * velocity.y;
-
 	angle = IwGeomAtan2(velocity.y, velocity.x);
 
-	// Clamp world coordinates
-	if (position.x < 0)
-		position.x = 0;
-	if (position.x > WORLD_PIXELS_WIDTH)
-		position.x = WORLD_PIXELS_WIDTH;
-	if (position.y < 0)
-		position.y = 0;
-	if (position.y > WORLD_PIXELS_HEIGHT)
-		position.y = WORLD_PIXELS_HEIGHT;
+	int nextPosX = position.x + throttle * speed * velocity.x;
+	int nextPosY = position.y + throttle * speed * velocity.y;
+
+	if (!theWorld->isPositionNavigable(nextPosX, nextPosY))
+		return;
+
+	position.x = nextPosX;
+	position.y = nextPosY;
 }
 

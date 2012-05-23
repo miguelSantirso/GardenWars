@@ -64,7 +64,7 @@ int main()
         // Clear the screen
         IwGxClear(IW_GX_COLOUR_BUFFER_F | IW_GX_DEPTH_BUFFER_F);
 
-		theBot.update();
+		theBot.update(&theWorld);
 		spawnStars();
 		checkCollisionsWithStars(theBot.position);
 

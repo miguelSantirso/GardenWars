@@ -17,8 +17,8 @@ World::World(SimpleResourceManager* resources)
 				grid[i][j] = World::Stone;
 			else if (IwRand() % 100 > 20)
 				grid[i][j] = World::Grass;
-			else if (IwRand() % 100 > 30)
-				grid[i][j] = World::StoneTall;
+			else if (IwRand() % 100 > 20)
+				grid[i][j] = World::Water;
 			else 
 				grid[i][j] = World::Dirt;
 
@@ -42,6 +42,22 @@ void World::release()
 			grid[i] = NULL;
 		}
 	}
+}
+
+
+bool World::isPositionNavigable(int x, int y)
+{
+	if (x < -0.5 * TILE_WIDTH ||
+		x > WORLD_PIXELS_WIDTH - 0.5 * TILE_WIDTH ||
+		y < -0.5 * TILE_HEIGHT ||
+		y > WORLD_PIXELS_HEIGHT - 0.5 * TILE_HEIGHT)
+		return false;
+
+	int tileX, tileY;
+	tileX = ((x + 0.5 * TILE_WIDTH) / float(WORLD_PIXELS_WIDTH)) * WORLD_TILES_WIDTH;
+	tileY = ((y + 0.5 * TILE_HEIGHT) / float(WORLD_PIXELS_HEIGHT)) * WORLD_TILES_HEIGHT;
+
+	return grid[tileX][tileY] != World::Water;
 }
 
 
@@ -84,6 +100,6 @@ void World::drawTile(int i, int j)
     Iw2DSetTransformMatrix(transform);
 
 	int offsetX = -(tileImages[grid[i][j]]->GetWidth() / 2);
-	int offsetY = -50;
+	int offsetY = -90;
 	Iw2DDrawImage(tileImages[grid[i][j]], CIwSVec2(offsetX, offsetY));
 }
