@@ -3,7 +3,7 @@
 
 Player::Player(CIw2DImage* image) : Sprite(image)
 {
-	speed = 0.004;
+	speed = 0.006;
 	velocity.x = 0;
 	velocity.y = 0;
 
