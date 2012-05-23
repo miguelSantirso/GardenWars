@@ -13,7 +13,7 @@
 struct Effect
 {
     virtual bool update(int elapsed) = 0;
-    virtual void render() = 0;
+	virtual void render(const CIwVec2& camPos) = 0;
     virtual ~Effect() {}
 };
 

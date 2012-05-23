@@ -19,7 +19,7 @@ struct EffectManager
     void add(Effect* e) { effects.append(e); }
     void clear();
     void update(int elapsed);
-    void render();
+    void render(const CIwVec2& camPos);
 };
 
 extern EffectManager * g_EffectsManager;

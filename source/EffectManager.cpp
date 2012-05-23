@@ -36,12 +36,12 @@ void EffectManager::update(int elapsed)
     }
 }
 
-void EffectManager::render()
+void EffectManager::render(const CIwVec2& camPos)
 {
     Iw2DSetColour(0xff808080);
     Iw2DSetAlphaMode(IW_2D_ALPHA_ADD);
     for (uint32 i=0; i<effects.size(); i++)
-        effects[i]->render();
+        effects[i]->render(camPos);
     Iw2DSetAlphaMode(IW_2D_ALPHA_NONE);
     Iw2DSetColour(0xffffffff);
 }

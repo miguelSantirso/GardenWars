@@ -20,6 +20,7 @@ protected:
 	CIw2DImage* graphic;
 
 	float angle;
+	float size;
 
 	// Auxiliary
 	CIwSVec2 offset;

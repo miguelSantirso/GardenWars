@@ -1,6 +1,6 @@
 #include "Sprite.h"
 
-Sprite::Sprite(CIw2DImage* image) : graphic(image), angle(0), position(CIwVec2(0,0))
+Sprite::Sprite(CIw2DImage* image) : graphic(image), angle(0), size(1), position(CIwVec2(0,0))
 {
 	offset.x = -(graphic->GetWidth() * 0.5);
 	offset.y = -(graphic->GetHeight() * 0.5);
@@ -30,5 +30,5 @@ void Sprite::draw(CIwVec2 camPos)
 	transform.SetTrans(screenPos);
 	Iw2DSetTransformMatrix(transform);
 
-	Iw2DDrawImage(graphic, offset);
+	Iw2DDrawImage(graphic, offset, CIwSVec2(graphic->GetWidth() * size, graphic->GetHeight() * size));
 }

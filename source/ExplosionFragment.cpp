@@ -1,36 +1,27 @@
 #include "ExplosionFragment.h"
 #include "Config.h"
 
-ExplosionFragment::ExplosionFragment(CIwVec2 const & startPos, CIwVec2 const & startVel, int _colour)
+ExplosionFragment::ExplosionFragment(CIw2DImage* graphic, CIwVec2 const & startPos, CIwVec2 const & startVel, int _colour) : Sprite(graphic)
 {
-/*	if (ExplosionFragment::graphic == NULL)
-		ExplosionFragment::graphic = Iw2DCreateImage("star.png");*/
-
     colour = _colour;
-    timer = rand() % 200;
-    pos = startPos;
-    vel = startVel;
-
-    vel.y -= 100000;
+    timer = rand() % 20;
+    position = startPos;
 }
+
 bool ExplosionFragment::update(int elapsed)
 {
-    timer += elapsed;
+    timer += 1;
 
     // Move under gravity
-    pos += vel * elapsed;
-
-    vel.y += elapsed * 300;
+	position.y -= 0.006;
+	size += 0.12;
 
     // The effect disappears after about 1 second
-    return timer<1000;
+    return timer<35;
 }
-void ExplosionFragment::render()
-{
-	int size = TILE_WIDTH * 2;
-    size = size * (1000-timer) / 1000;
 
-	/*int offsetX = -(ExplosionFragment::graphic->GetWidth() * 0.5);
-	int offsetY = -(ExplosionFragment::graphic->GetHeight() * 0.5);
-	Iw2DDrawImage(ExplosionFragment::graphic, CIwSVec2(offsetX, offsetY), CIwSVec2(size, size));*/
+
+void ExplosionFragment::render(const CIwVec2& camPos)
+{
+	draw(camPos);
 }
