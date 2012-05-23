@@ -8,6 +8,7 @@ SimpleResourceManager::SimpleResourceManager()
 	images[RESOURCE_STONE] = Iw2DCreateImage("stone.png");
 	images[RESOURCE_STONE_TALL] = Iw2DCreateImage("stone_tall.png");
 	images[RESOURCE_STAR] = Iw2DCreateImage("star.png");
+	images[RESOURCE_WATER] = Iw2DCreateImage("water.png");
 }
 
 SimpleResourceManager::~SimpleResourceManager()

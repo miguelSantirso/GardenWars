@@ -2,6 +2,12 @@
 
 World::World(SimpleResourceManager* resources)
 {
+	tileImages[World::Water] = resources->getImage(RESOURCE_WATER);
+	tileImages[World::Grass] = resources->getImage(RESOURCE_GRASS);
+	tileImages[World::Stone] = resources->getImage(RESOURCE_STONE);
+	tileImages[World::StoneTall] = resources->getImage(RESOURCE_STONE_TALL);
+	tileImages[World::Dirt] = resources->getImage(RESOURCE_DIRT);
+
 	for (int i = 0; i < WORLD_TILES_WIDTH; i++)
 	{
 		grid[i] = new TileType[WORLD_TILES_HEIGHT];
@@ -11,16 +17,14 @@ World::World(SimpleResourceManager* resources)
 				grid[i][j] = World::Stone;
 			else if (IwRand() % 100 > 20)
 				grid[i][j] = World::Grass;
-			else 
+			else if (IwRand() % 100 > 30)
 				grid[i][j] = World::StoneTall;
+			else 
+				grid[i][j] = World::Dirt;
 
 		}
 			
 	}
-	tileImages[World::Grass] = resources->getImage(RESOURCE_GRASS);
-	tileImages[World::Stone] = resources->getImage(RESOURCE_STONE);
-	tileImages[World::StoneTall] = resources->getImage(RESOURCE_STONE_TALL);
-	tileImages[World::Dirt] = resources->getImage(RESOURCE_DIRT);
 }
 
 World::~World()
