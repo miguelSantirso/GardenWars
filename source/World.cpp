@@ -15,7 +15,7 @@ World::World()
 		{
 			if (i == 0 || i == WORLD_TILES_WIDTH -1 || j == 0 || j == WORLD_TILES_HEIGHT - 1)
 				grid[i][j] = World::Stone;
-			else if (IwRand() % 100 > 20)
+			else if (IwRand() % 100 > 30)
 				grid[i][j] = World::Grass;
 			else if (IwRand() % 100 > 20)
 				grid[i][j] = World::Water;
