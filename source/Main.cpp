@@ -4,6 +4,7 @@
 #include "IwGx.h"
 
 #include "EffectManager.h"
+#include "SimpleResourceManager.h"
 #include "ExplosionFragment.h"
 
 #include "World.h"
@@ -17,8 +18,6 @@ Star* stars[MAX_STARS];
 
 int starsCollected = 0;
 
-SimpleResourceManager* resources;
-
 void spawnStars();
 void drawStars(CIwVec2 camPos);
 void checkCollisionsWithStars(CIwVec2);
@@ -30,7 +29,7 @@ int main()
     Iw2DInit();
 
 	g_EffectsManager = new EffectManager();
-	resources = new SimpleResourceManager();
+	g_Resources = new SimpleResourceManager();
 
     // Set the default background clear colour
     IwGxSetColClear(0x40, 0x40, 0x40, 0);
@@ -39,8 +38,8 @@ int main()
     int surface_width = Iw2DGetSurfaceWidth();
     int surface_height = Iw2DGetSurfaceHeight();
 
-	World theWorld(resources);
-	Player theBot(resources->getImage(RESOURCE_CHARACTER));
+	World theWorld;
+	Player theBot(g_Resources->getImage(RESOURCE_CHARACTER));
 
 	char starsCollectedText[40];
 	char fpsText[40];
@@ -102,9 +101,8 @@ int main()
 		}
 	}
 
-	delete resources;
-
-	delete (g_EffectsManager);
+	delete g_Resources;
+	delete g_EffectsManager;
 
     // Shut down Marmalade graphics system and the Iw2D module
     Iw2DTerminate();
@@ -121,7 +119,7 @@ void spawnStars()
 
 	if (true || IwRand() % 100 == 0)
 	{
-		stars[nStars] = new Star(resources->getImage(RESOURCE_STAR));
+		stars[nStars] = new Star(g_Resources->getImage(RESOURCE_STAR));
 		stars[nStars]->position.x = IwRandMinMax(0, WORLD_PIXELS_WIDTH);
 		stars[nStars]->position.y = IwRandMinMax(0, WORLD_PIXELS_HEIGHT);
 
@@ -137,7 +135,7 @@ void checkCollisionsWithStars(CIwVec2 playerPos)
 	{
 		if (stars[i] != NULL && (playerPos - stars[i]->position).GetLength() < 80)
 		{
-			ExplosionFragment* exp = new ExplosionFragment(resources->getImage(RESOURCE_STAR), stars[i]->position, CIwVec2(0, -0.0001), 0xff223355);
+			ExplosionFragment* exp = new ExplosionFragment(g_Resources->getImage(RESOURCE_STAR), stars[i]->position, CIwVec2(0, -0.0001), 0xff223355);
 			g_EffectsManager->add(exp);
 
 			delete stars[i];

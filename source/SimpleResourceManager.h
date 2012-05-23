@@ -25,4 +25,6 @@ private:
 	CIw2DImage* images[NUM_RESOURCES];
 };
 
+extern SimpleResourceManager * g_Resources;
+
 #endif

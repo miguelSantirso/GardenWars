@@ -14,7 +14,7 @@ class World
 public:
 	enum TileType { Grass = 0, Stone, StoneTall, Dirt, Water };
 
-	World(SimpleResourceManager* resources);
+	World();
 	~World();
 	void release();
 

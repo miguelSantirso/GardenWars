@@ -39,6 +39,8 @@ files
 
 	[Source/game]
 	(source)
+	Simulation.cpp
+	Simulation.h
 	World.cpp
 	World.h
 	Player.cpp

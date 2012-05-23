@@ -1,12 +1,12 @@
 #include "World.h"
 
-World::World(SimpleResourceManager* resources)
+World::World()
 {
-	tileImages[World::Water] = resources->getImage(RESOURCE_WATER);
-	tileImages[World::Grass] = resources->getImage(RESOURCE_GRASS);
-	tileImages[World::Stone] = resources->getImage(RESOURCE_STONE);
-	tileImages[World::StoneTall] = resources->getImage(RESOURCE_STONE_TALL);
-	tileImages[World::Dirt] = resources->getImage(RESOURCE_DIRT);
+	tileImages[World::Water] = g_Resources->getImage(RESOURCE_WATER);
+	tileImages[World::Grass] = g_Resources->getImage(RESOURCE_GRASS);
+	tileImages[World::Stone] = g_Resources->getImage(RESOURCE_STONE);
+	tileImages[World::StoneTall] = g_Resources->getImage(RESOURCE_STONE_TALL);
+	tileImages[World::Dirt] = g_Resources->getImage(RESOURCE_DIRT);
 
 	for (int i = 0; i < WORLD_TILES_WIDTH; i++)
 	{

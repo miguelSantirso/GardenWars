@@ -1,5 +1,7 @@
 #include "SimpleResourceManager.h"
 
+SimpleResourceManager* g_Resources = 0;
+
 SimpleResourceManager::SimpleResourceManager()
 {
 	images[RESOURCE_CHARACTER] = Iw2DCreateImage("character.png");

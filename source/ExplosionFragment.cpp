@@ -18,7 +18,7 @@ bool ExplosionFragment::update(int elapsed)
 	size += 0.12;
 	angle += 600;
 
-	speed *= 1.3;
+	speed *= 1.45;
 
     // The effect disappears after about 1 second
     return timer<35;
