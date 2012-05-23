@@ -34,6 +34,8 @@ void Player::update(World* theWorld)
 			nextPosX = position.x;
 		else if (theWorld->isPositionNavigable(nextPosX, position.y))
 			nextPosY = position.y;
+		else
+			return;
 	}
 
 	position.x = nextPosX;
