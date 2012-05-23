@@ -3,12 +3,13 @@
 
 #include "Iw2D.h"
 
-#define NUM_RESOURCES 5
+#define NUM_RESOURCES 6
 #define RESOURCE_CHARACTER 0
 #define RESOURCE_DIRT 1
 #define RESOURCE_GRASS 2
 #define RESOURCE_STONE 3
 #define RESOURCE_STAR 4
+#define RESOURCE_STONE_TALL 5
 
 class SimpleResourceManager
 {

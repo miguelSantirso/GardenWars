@@ -12,7 +12,7 @@
 class World
 {
 public:
-	enum TileType { Grass = 0, Stone, Dirt };
+	enum TileType { Grass = 0, Stone, StoneTall, Dirt };
 
 	World(SimpleResourceManager* resources);
 	~World();
@@ -21,7 +21,7 @@ public:
 	void release();
 private:
 	TileType* grid[WORLD_TILES_WIDTH];
-	CIw2DImage* tileImages[3];
+	CIw2DImage* tileImages[4];
 
 	int camX;
 	int camY;

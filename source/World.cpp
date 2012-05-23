@@ -12,13 +12,14 @@ World::World(SimpleResourceManager* resources)
 			else if (IwRand() % 100 > 20)
 				grid[i][j] = World::Grass;
 			else 
-				grid[i][j] = World::Dirt;
+				grid[i][j] = World::StoneTall;
 
 		}
 			
 	}
 	tileImages[World::Grass] = resources->getImage(RESOURCE_GRASS);
 	tileImages[World::Stone] = resources->getImage(RESOURCE_STONE);
+	tileImages[World::StoneTall] = resources->getImage(RESOURCE_STONE_TALL);
 	tileImages[World::Dirt] = resources->getImage(RESOURCE_DIRT);
 }
 

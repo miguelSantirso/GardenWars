@@ -52,6 +52,7 @@ assets
 	(data)
 	grass.png
 	stone.png
+	stone_tall.png
 	dirt.png
 	character.png
 	star.png
